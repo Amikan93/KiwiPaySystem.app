@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFCreatePay.app.Model;
 
 namespace WPFCreatePay.app
 {
@@ -44,10 +45,20 @@ namespace WPFCreatePay.app
 
             //обращаемся к MainAuthWindow, текущее окно закроется и откроется новое
 
-            MainAuthWindow mainAuth = new MainAuthWindow();
-            mainAuth.Show();
+            UserService userService = new UserService();
 
-            this.Close();
+            if (userService.CheckUser(login, password))
+            {
+                MainAuthWindow mainAuth = new MainAuthWindow();
+                mainAuth.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Логин или пароль неверный");
+            }
+
+           
         }
     }
 }

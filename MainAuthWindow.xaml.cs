@@ -19,9 +19,12 @@ namespace WPFCreatePay.app
     /// </summary>
     public partial class MainAuthWindow : Window
     {
+        public static Frame _frameMain;
+
         public MainAuthWindow()
         {
             InitializeComponent();
+            _frameMain = frameMain;
 
         }
 

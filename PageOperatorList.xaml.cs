@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFCreatePay.app.Model;
 
 namespace WPFCreatePay.app
 {
@@ -24,21 +25,25 @@ namespace WPFCreatePay.app
         {
             InitializeComponent();
 
-            List<Operator> operators = new List<Operator>();
-            operators.Add(new Operator()
-            {
-                Prefix = "+7 777",
-                Logo = "https://upload.wikimedia.org/wikipedia/commons/7/7a/BeeLine_logo.png",
-                Name = "Beeline",
-                Percent = 0.5
-            });
+            //List<Operator> operators = new List<Operator>();
+            //operators.Add(new Operator()
+            //{
+            //    Prefix = "+7 777",
+            //    Logo = "https://upload.wikimedia.org/wikipedia/commons/7/7a/BeeLine_logo.png",
+            //    Name = "Beeline",
+            //    Percent = 0.5
+            //});
 
-            lvOperatorList.ItemsSource = operators;
+
+            OperatorService operatorService = new OperatorService();
+            lvOperatorList.ItemsSource = operatorService.GetOperators();
 
         }
         private void BtnEditData_OnClick(object sender, RoutedEventArgs e)
         {
             Operator data = (Operator)lvOperatorList.SelectedItem;
+
+            MainAuthWindow._frameMain.Source = new Uri("_pageAddOperator.xaml", UriKind.RelativeOrAbsolute);
         }
     }
 
